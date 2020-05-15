@@ -5,10 +5,12 @@ import java.util.UUID;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.StealthyTomato.StealthyStacker.Listeners.EntityDamageListener;
-import me.StealthyTomato.StealthyStacker.Listeners.MobDeathListener;
 import me.StealthyTomato.StealthyStacker.Listeners.MobSpawnListener;
 import me.StealthyTomato.StealthyStacker.StackClasses.EntityStack;
 
@@ -23,10 +25,9 @@ public class Main extends JavaPlugin {
 		//TODO
 		//startup, reloads, and plugin reloads
 		plugin = this;
-		plugin.saveDefaultConfig();
-		plugin.getServer().getPluginManager().registerEvents(new MobSpawnListener(), this);
-		plugin.getServer().getPluginManager().registerEvents(new MobDeathListener(), this);
-		plugin.getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
+		saveDefaultConfig();
+		getServer().getPluginManager().registerEvents(new MobSpawnListener(), this);
+		getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
 	}
 	
 	@Override
@@ -37,18 +38,24 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		
-		if(args.length > 0 && label.equalsIgnoreCase("StealthyStacker")) {
-			switch (args.length) {
-				case 1:
-					if(args[0].equalsIgnoreCase("reload"))
-						plugin.reloadConfig();
-					if(args[0].equalsIgnoreCase("kill"))
-						Main.entityStacks.clear();
-				default:
+		Player player = (Player) sender;
+		if (sender instanceof Player) {
+			if(args.length > 0 && cmd.getName().equalsIgnoreCase("StealthyStacker")) {
+				switch (args.length) {
+					case 1:
+						if(args[0].equalsIgnoreCase("reload")) {
+							plugin.reloadConfig();
+							getLogger().info("reloaded plugin");
+						}
+						if(args[0].equalsIgnoreCase("kill")) {
+							Main.entityStacks.clear();
+							getLogger().info("removed entity stacks");
+						}
+					default:
+				}
+			
+				return true;
 			}
-		
-			return true;
 		}
 		return false;
 	}

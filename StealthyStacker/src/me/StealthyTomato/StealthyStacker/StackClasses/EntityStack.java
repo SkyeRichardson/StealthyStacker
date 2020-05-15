@@ -30,7 +30,10 @@ public abstract class EntityStack {
 	
 	public void decrementEntityStack() {
 		size--;
-		updateName(size);
+		if(size > 1)
+			updateName(size);
+		else
+			principalEntity.setCustomName(null);
 	}
 	
 	public void addNearbyEntitiesToStack(int rx, int ry, int rz) {
