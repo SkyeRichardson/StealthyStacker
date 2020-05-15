@@ -8,29 +8,36 @@ import org.bukkit.entity.EntityType;
 
 public abstract class EntityStack {
 	
-	public int size;
+	private int size;
 	
-	public String name;
+	private String name;
 
-	public Entity principalEntity;
+	private Entity principalEntity;
 	
 	public EntityStack(Entity entity) {
 		this.size = 1;
 		this.principalEntity = entity;
-		this.updateName(1);
 	}
 	
 	public void updateName(int size) {
 		principalEntity.setCustomName(String.valueOf(size) + " " + principalEntity.getType().toString());
 	}
 
+	public void incrementEntityStack() {
+		size++;
+		updateName(size);
+	}
+	
+	public void decrementEntityStack() {
+		size--;
+		updateName(size);
+	}
 	
 	public void addNearbyEntitiesToStack(int rx, int ry, int rz) {
 		List<Entity> nearbyEntities = principalEntity.getNearbyEntities(rx, ry, rz);
 		for (Entity entity : nearbyEntities)
 			if(entity.getType().equals(principalEntity.getType())) {
-				size++;
-				updateName(size);
+				incrementEntityStack();
 				entity.remove();
 			}
 	}

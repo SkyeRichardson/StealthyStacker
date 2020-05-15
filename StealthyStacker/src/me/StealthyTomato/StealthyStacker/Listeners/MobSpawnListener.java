@@ -1,16 +1,10 @@
 package me.StealthyTomato.StealthyStacker.Listeners;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.entity.Creature;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.plugin.Plugin;
-
 import me.StealthyTomato.StealthyStacker.Main;
 import me.StealthyTomato.StealthyStacker.StackClasses.CreatureStack;
 import me.StealthyTomato.StealthyStacker.StackClasses.EntityStack;
@@ -27,9 +21,10 @@ public class MobSpawnListener implements Listener {
 		EntityStack largestNearbyStack = EntityStackUtils.findLargestEntityStackNearEntity(mob, x, y, z);
 		if(largestNearbyStack == null) {
 			CreatureStack newCreatureStack = new CreatureStack(mob);
-			Main.entityStacks.put(mob.getUniqueId(), newCreatureStack);
+			Main.getEntityStacks().put(mob.getUniqueId(), newCreatureStack);
 		} else {
-			largestNearbyStack.addNearbyEntitiesToStack(x, y, z);
+			event.setCancelled(true);
+			largestNearbyStack.incrementEntityStack();
 		}
 
 	}

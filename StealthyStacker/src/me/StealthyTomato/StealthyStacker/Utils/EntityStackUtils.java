@@ -15,9 +15,9 @@ public class EntityStackUtils {
 		EntityStack largestEntityStack = null;
 		List<Entity> nearbyEntities = entity.getNearbyEntities(rx, ry, rz);
 		for (Entity ent : nearbyEntities)
-			if(Main.entityStacks.get(ent.getUniqueId()) != null)
-				if(largestEntityStack == null || Main.entityStacks.get(ent.getUniqueId()).getSize() > largestEntityStack.getSize())
-					largestEntityStack = Main.entityStacks.get(ent.getUniqueId());
+			if(Main.getEntityStacks().get(ent.getUniqueId()) != null)
+				if(largestEntityStack == null || Main.getEntityStacks().get(ent.getUniqueId()).getSize() > largestEntityStack.getSize())
+					largestEntityStack = Main.getEntityStacks().get(ent.getUniqueId());
 		return largestEntityStack;
 	}
 }
