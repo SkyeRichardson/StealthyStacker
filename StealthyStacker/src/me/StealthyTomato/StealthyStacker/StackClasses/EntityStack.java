@@ -3,8 +3,10 @@ package me.StealthyTomato.StealthyStacker.StackClasses;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 
 public abstract class EntityStack {
 	
@@ -20,7 +22,11 @@ public abstract class EntityStack {
 	}
 	
 	public void updateName(int size) {
-		principalEntity.setCustomName(String.valueOf(size) + " " + principalEntity.getType().toString());
+		if (principalEntity instanceof Creature)
+			principalEntity.setCustomName(String.valueOf(size) + " " + principalEntity.getType().toString());
+		if (principalEntity instanceof Item)
+			principalEntity.setCustomName(String.valueOf(size) + " " + ((Item) principalEntity).getItemStack().getType().toString());
+		principalEntity.setCustomNameVisible(true);
 	}
 
 	public void incrementEntityStack() {

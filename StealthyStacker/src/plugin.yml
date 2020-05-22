@@ -3,3 +3,11 @@ name: StealthyStacker
 version: 1.0
 author: StealthyTomato
 api-version: 1.8.8
+commands:
+  StealthyStacker:
+      reload:
+        description: reloads plugin
+        usage: /<command> <arg1>
+      kill:
+        description: removes all entity stacks
+        usage: /<command> <arg1>

@@ -2,6 +2,10 @@ mob_distance:
   x: 5
   y: 5
   z: 5
+item_distance:
+  x: 5
+  y: 5
+  z: 5
 color:
   amount: "LIGHT_GREEN"
   times: "GREEN"

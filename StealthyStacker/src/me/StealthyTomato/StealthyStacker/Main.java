@@ -11,7 +11,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.StealthyTomato.StealthyStacker.Listeners.EntityDamageListener;
+import me.StealthyTomato.StealthyStacker.Listeners.ItemSpawnListener;
 import me.StealthyTomato.StealthyStacker.Listeners.MobSpawnListener;
+import me.StealthyTomato.StealthyStacker.Listeners.PlayerPickupItemListener;
 import me.StealthyTomato.StealthyStacker.StackClasses.EntityStack;
 
 public class Main extends JavaPlugin {
@@ -28,6 +30,8 @@ public class Main extends JavaPlugin {
 		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents(new MobSpawnListener(), this);
 		getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
+		getServer().getPluginManager().registerEvents(new ItemSpawnListener(), this);
+		getServer().getPluginManager().registerEvents(new PlayerPickupItemListener(), this);
 	}
 	
 	@Override
