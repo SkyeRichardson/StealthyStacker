@@ -8,19 +8,21 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 
-public abstract class EntityStack {
-	
-	private int size;
-	
-	private String name;
+public abstract class EntityStack extends ObjectStack {
 
 	private Entity principalEntity;
 	
 	public EntityStack(Entity entity) {
-		this.size = 1;
-		this.principalEntity = entity;
+		super(entity);
+		principalEntity = (Entity) this.getPrincipalObject();
 	}
 	
+	@Override
+	public void removeName() {
+		principalEntity.setCustomName(null);
+	}
+	
+	@Override
 	public void updateName(int size) {
 		if (principalEntity instanceof Creature)
 			principalEntity.setCustomName(String.valueOf(size) + " " + principalEntity.getType().toString());
@@ -29,19 +31,8 @@ public abstract class EntityStack {
 		principalEntity.setCustomNameVisible(true);
 	}
 
-	public void incrementEntityStack() {
-		size++;
-		updateName(size);
-	}
 	
-	public void decrementEntityStack() {
-		size--;
-		if(size > 1)
-			updateName(size);
-		else
-			principalEntity.setCustomName(null);
-	}
-	
+	@Override
 	public void addNearbyEntitiesToStack(int rx, int ry, int rz) {
 		List<Entity> nearbyEntities = principalEntity.getNearbyEntities(rx, ry, rz);
 		for (Entity entity : nearbyEntities)
@@ -49,22 +40,6 @@ public abstract class EntityStack {
 				incrementEntityStack();
 				entity.remove();
 			}
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Entity getPrincipalEntity() {
