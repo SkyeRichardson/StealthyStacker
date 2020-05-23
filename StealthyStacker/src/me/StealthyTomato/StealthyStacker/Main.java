@@ -12,6 +12,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.StealthyTomato.StealthyStacker.Listeners.BlockBreakListener;
 import me.StealthyTomato.StealthyStacker.Listeners.BlockPlaceListener;
 import me.StealthyTomato.StealthyStacker.Listeners.EntityDamageListener;
 import me.StealthyTomato.StealthyStacker.Listeners.ItemSpawnListener;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ItemSpawnListener(), this);
 		getServer().getPluginManager().registerEvents(new PlayerPickupItemListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
+		getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
 	}
 	
 	@Override

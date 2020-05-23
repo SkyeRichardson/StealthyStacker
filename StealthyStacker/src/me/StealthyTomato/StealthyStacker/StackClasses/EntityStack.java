@@ -23,6 +23,11 @@ public abstract class EntityStack extends ObjectStack {
 	}
 	
 	@Override
+	public void removeObjectStack() {
+		
+	}
+	
+	@Override
 	public void addNearbyObjectsToStack(int... radii) {
 		List<Entity> nearbyEntities = principalEntity.getNearbyEntities(radii[0], radii[1], radii[2]);
 		for (Entity entity : nearbyEntities)

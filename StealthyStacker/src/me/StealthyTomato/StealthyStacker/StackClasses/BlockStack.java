@@ -6,6 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 
+import me.StealthyTomato.StealthyStacker.Main;
 import me.StealthyTomato.StealthyStacker.Utils.ObjectStackUtils;
 
 public class BlockStack extends ObjectStack {
@@ -25,7 +26,13 @@ public class BlockStack extends ObjectStack {
 	
 	@Override
 	public void removeName() {
-		
+		nameTag.setCustomNameVisible(false);
+	}
+
+	@Override
+	public void removeObjectStack() {
+		nameTag.remove();
+		Main.blockStacks.remove(principalBlock.getLocation());
 	}
 	
 	@Override

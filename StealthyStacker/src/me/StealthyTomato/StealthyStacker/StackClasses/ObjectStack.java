@@ -27,11 +27,15 @@ public abstract class ObjectStack {
 		size--;
 		if(size > 1)
 			updateName(size);
-		else
+		else if(size == 1)
 			removeName();
+		else
+			removeObjectStack();
 	}
 
 	public abstract void removeName();
+	
+	public abstract void removeObjectStack();
 	
 	public abstract void addNearbyObjectsToStack(int... radii);
 
