@@ -23,21 +23,11 @@ public abstract class EntityStack extends ObjectStack {
 	}
 	
 	@Override
-	public void updateName(int size) {
-		if (principalEntity instanceof Creature)
-			principalEntity.setCustomName(String.valueOf(size) + " " + principalEntity.getType().toString());
-		if (principalEntity instanceof Item)
-			principalEntity.setCustomName(String.valueOf(size) + " " + ((Item) principalEntity).getItemStack().getType().toString());
-		principalEntity.setCustomNameVisible(true);
-	}
-
-	
-	@Override
-	public void addNearbyEntitiesToStack(int rx, int ry, int rz) {
-		List<Entity> nearbyEntities = principalEntity.getNearbyEntities(rx, ry, rz);
+	public void addNearbyObjectsToStack(int... radii) {
+		List<Entity> nearbyEntities = principalEntity.getNearbyEntities(radii[0], radii[1], radii[2]);
 		for (Entity entity : nearbyEntities)
 			if(entity.getType().equals(principalEntity.getType())) {
-				incrementEntityStack();
+				incrementObjectStack();
 				entity.remove();
 			}
 	}

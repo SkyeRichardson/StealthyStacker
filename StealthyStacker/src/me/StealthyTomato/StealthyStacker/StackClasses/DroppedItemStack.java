@@ -6,4 +6,10 @@ public class DroppedItemStack extends EntityStack {
 	public DroppedItemStack(Item item) {
 		super(item);
 	}
+	
+	@Override
+	public void updateName(int size) {
+		this.getPrincipalEntity().setCustomName(String.valueOf(size) + " " + ((Item) this.getPrincipalEntity()).getItemStack().getType().toString());
+		this.getPrincipalEntity().setCustomNameVisible(true);
+	}
 }

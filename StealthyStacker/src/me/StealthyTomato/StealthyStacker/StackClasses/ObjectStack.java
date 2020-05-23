@@ -1,12 +1,6 @@
 package me.StealthyTomato.StealthyStacker.StackClasses;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
 import org.bukkit.metadata.Metadatable;
 
 public abstract class ObjectStack {
@@ -24,12 +18,12 @@ public abstract class ObjectStack {
 	
 	public abstract void updateName(int size);
 
-	public void incrementEntityStack() {
+	public void incrementObjectStack() {
 		size++;
 		updateName(size);
 	}
 	
-	public void decrementEntityStack() {
+	public void decrementObjectStack() {
 		size--;
 		if(size > 1)
 			updateName(size);
@@ -39,7 +33,7 @@ public abstract class ObjectStack {
 
 	public abstract void removeName();
 	
-	public abstract void addNearbyEntitiesToStack(int rx, int ry, int rz);
+	public abstract void addNearbyObjectsToStack(int... radii);
 
 	public int getSize() {
 		return size;

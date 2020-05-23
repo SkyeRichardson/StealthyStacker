@@ -2,6 +2,8 @@ package me.StealthyTomato.StealthyStacker;
 
 import java.util.HashMap;
 import java.util.UUID;
+
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -10,18 +12,21 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.StealthyTomato.StealthyStacker.Listeners.BlockPlaceListener;
 import me.StealthyTomato.StealthyStacker.Listeners.EntityDamageListener;
 import me.StealthyTomato.StealthyStacker.Listeners.ItemSpawnListener;
 import me.StealthyTomato.StealthyStacker.Listeners.MobSpawnListener;
 import me.StealthyTomato.StealthyStacker.Listeners.PlayerPickupItemListener;
+import me.StealthyTomato.StealthyStacker.StackClasses.BlockStack;
 import me.StealthyTomato.StealthyStacker.StackClasses.EntityStack;
 
 public class Main extends JavaPlugin {
 	
 	private static Main plugin;
 	public FileConfiguration config = getConfig();
-	private static HashMap<UUID, EntityStack> entityStacks = new HashMap<>(); 
-	
+	public static HashMap<UUID, EntityStack> entityStacks = new HashMap<>(); 
+	public static HashMap<Location, BlockStack> blockStacks = new HashMap<>(); 
+
 	@Override
 	public void onEnable() {
 		//TODO
@@ -32,6 +37,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
 		getServer().getPluginManager().registerEvents(new ItemSpawnListener(), this);
 		getServer().getPluginManager().registerEvents(new PlayerPickupItemListener(), this);
+		getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
 	}
 	
 	@Override
