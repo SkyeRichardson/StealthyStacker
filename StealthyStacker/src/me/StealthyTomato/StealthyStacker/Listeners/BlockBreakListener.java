@@ -1,5 +1,6 @@
 package me.StealthyTomato.StealthyStacker.Listeners;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,11 +14,13 @@ public class BlockBreakListener implements Listener {
 	@EventHandler
     public void onBlockPlace(BlockBreakEvent event) {
 		Block block = event.getBlock();
-		BlockStack blockStack = Main.blockStacks.get(block.getLocation());
-		if(blockStack != null) {
-			blockStack.decrementObjectStack();
-			if(blockStack.getSize() > 0)
-				event.setCancelled(true);
+		if(block.getType().equals(Material.MOB_SPAWNER)) {
+			BlockStack blockStack = Main.blockStacks.get(block.getLocation());
+			if(blockStack != null) {
+				blockStack.decrementObjectStack();
+				if(blockStack.getSize() > 0)
+					event.setCancelled(true);
+			}
 		}
 	}
 }
