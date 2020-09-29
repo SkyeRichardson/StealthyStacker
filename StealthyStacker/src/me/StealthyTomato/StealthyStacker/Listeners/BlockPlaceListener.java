@@ -13,6 +13,7 @@ import me.StealthyTomato.StealthyStacker.StackClasses.EntityStack;
 import me.StealthyTomato.StealthyStacker.Utils.ObjectStackUtils;
 
 public class BlockPlaceListener implements Listener {
+	
 	@EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
 		Block block = event.getBlock();

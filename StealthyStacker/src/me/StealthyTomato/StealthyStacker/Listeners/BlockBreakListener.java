@@ -9,6 +9,7 @@ import me.StealthyTomato.StealthyStacker.Main;
 import me.StealthyTomato.StealthyStacker.StackClasses.BlockStack;
 
 public class BlockBreakListener implements Listener {
+	
 	@EventHandler
     public void onBlockPlace(BlockBreakEvent event) {
 		Block block = event.getBlock();
