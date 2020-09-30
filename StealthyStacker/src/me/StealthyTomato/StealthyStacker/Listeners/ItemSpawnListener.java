@@ -17,9 +17,16 @@ public class ItemSpawnListener implements Listener {
 		int y = Main.getPlugin().config.getInt("item_distance.y");
 		int z = Main.getPlugin().config.getInt("item_distance.z");
 		EntityStack largestNearbyStack = ObjectStackUtils.findLargestEntityStackNearEntity(item, x, y, z);
-		if(largestNearbyStack == null) {
+		if(largestNearbyStack == null || 
+		(largestNearbyStack instanceof DroppedItemStack && item.getItemStack().getType() != ((Item) largestNearbyStack.getPrincipalEntity()).getItemStack().getType())) {	
 			DroppedItemStack droppedItemStack = new DroppedItemStack(item);
 			Main.getEntityStacks().put(item.getUniqueId(), droppedItemStack);
+			int stackSize = item.getItemStack().getAmount();
+			if(item.getItemStack().getAmount() > 1) {
+				droppedItemStack.setSize(stackSize);
+				droppedItemStack.updateName(stackSize);
+				item.getItemStack().setAmount(1);
+			}
 		} else if(largestNearbyStack instanceof DroppedItemStack && item.getItemStack().getType().equals(((Item) largestNearbyStack.getPrincipalEntity()).getItemStack().getType())) {
 			event.setCancelled(true);
 			int newSize = largestNearbyStack.getSize() + item.getItemStack().getAmount();
