@@ -2,6 +2,7 @@ package me.StealthyTomato.StealthyStacker;
 
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -15,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.StealthyTomato.StealthyStacker.Listeners.BlockBreakListener;
 import me.StealthyTomato.StealthyStacker.Listeners.BlockPlaceListener;
 import me.StealthyTomato.StealthyStacker.Listeners.EntityDamageListener;
+import me.StealthyTomato.StealthyStacker.Listeners.InventoryPickupListener;
 import me.StealthyTomato.StealthyStacker.Listeners.ItemSpawnListener;
 import me.StealthyTomato.StealthyStacker.Listeners.MobSpawnListener;
 import me.StealthyTomato.StealthyStacker.Listeners.PlayerPickupItemListener;
@@ -40,6 +42,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new PlayerPickupItemListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
+		getServer().getPluginManager().registerEvents(new InventoryPickupListener(), this);
+		getLogger().info("StealthyStacker Enabled");
 	}
 	
 	@Override
@@ -79,4 +83,5 @@ public class Main extends JavaPlugin {
 	public static HashMap<UUID, EntityStack> getEntityStacks() {
 		return entityStacks;
 	}
+	
 }
