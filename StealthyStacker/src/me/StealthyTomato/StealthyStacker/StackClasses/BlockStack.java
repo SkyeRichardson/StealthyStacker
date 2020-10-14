@@ -37,7 +37,7 @@ public class BlockStack extends ObjectStack {
 	
 	@Override
 	public void updateName(int size) {
-		nameTag.setCustomName(String.valueOf(size) +  " " + principalBlock.getType());
+		nameTag.setCustomName(String.valueOf(size + 1) +  " " + principalBlock.getType());
 		nameTag.setCustomNameVisible(true);
 	}
 
