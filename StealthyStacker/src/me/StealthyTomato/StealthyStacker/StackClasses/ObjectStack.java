@@ -12,7 +12,7 @@ public abstract class ObjectStack {
 	private Metadatable principalObject;
 	
 	public ObjectStack(Metadatable object) {
-		this.size = 1;
+		this.size = 0;
 		this.principalObject = object;
 	}
 	
@@ -25,9 +25,9 @@ public abstract class ObjectStack {
 	
 	public void decrementObjectStack() {
 		size--;
-		if(size > 1)
+		if(size > 0)
 			updateName(size);
-		else if(size == 1)
+		else if(size == 0)
 			removeName();
 		else
 			removeObjectStack();
@@ -45,6 +45,7 @@ public abstract class ObjectStack {
 
 	public void setSize(int size) {
 		this.size = size;
+		updateName(size);
 	}
 	
 	public String getName() {

@@ -9,7 +9,7 @@ public class DroppedItemStack extends EntityStack {
 	
 	@Override
 	public void updateName(int size) {
-		this.getPrincipalEntity().setCustomName(String.valueOf(size) + " " + ((Item) this.getPrincipalEntity()).getItemStack().getType().toString());
+		this.getPrincipalEntity().setCustomName(String.valueOf(size+ 1) + " " + ((Item) this.getPrincipalEntity()).getItemStack().getType().toString());
 		this.getPrincipalEntity().setCustomNameVisible(true);
 	}
 }

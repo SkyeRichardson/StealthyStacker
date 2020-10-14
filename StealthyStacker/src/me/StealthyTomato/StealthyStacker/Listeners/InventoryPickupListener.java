@@ -7,36 +7,30 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.UUID;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_8_R3.block.CraftHopper;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import me.StealthyTomato.StealthyStacker.Main;
 
-//E
+//InventoryPickupItemEvent used explicitly for hoppers
 public class InventoryPickupListener implements Listener {
 	@EventHandler
 	public void onHopperGobble(InventoryPickupItemEvent event) {
 		UUID gobbledStack = event.getItem().getUniqueId();
 		if(Main.getEntityStacks().containsKey(gobbledStack)) {
 			
-			HashMap<Integer, ItemStack> itemStackHash = new HashMap<Integer,ItemStack>();
-			itemStackHash.put(0, event.getItem().getItemStack());
-			
-			Inventory inv = event.getInventory();
 			int stackSize = Main.entityStacks.get(gobbledStack).getSize();
-			ItemStack gobbled = new ItemStack(event.getItem().getItemStack().getType(),stackSize-1);
+			ItemStack gobbled = new ItemStack(event.getItem().getItemStack().getType(),stackSize);
 			
+			HashMap<Integer, ItemStack> itemStackHash = new HashMap<Integer,ItemStack>();
+			Inventory inv = event.getInventory();
 			itemStackHash = inv.addItem(gobbled);
 			if(!itemStackHash.isEmpty()) {
-				event.setCancelled(true);
 				Main.entityStacks.get(gobbledStack).setSize(itemStackHash.get(0).getAmount());
 				return;
 			}
 			else {
+				Main.entityStacks.remove(gobbledStack);
 				return;
 			}
 		}

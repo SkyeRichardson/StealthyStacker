@@ -21,7 +21,7 @@ public class ItemSpawnListener implements Listener {
 		(largestNearbyStack instanceof DroppedItemStack && item.getItemStack().getType() != ((Item) largestNearbyStack.getPrincipalEntity()).getItemStack().getType())) {	
 			DroppedItemStack droppedItemStack = new DroppedItemStack(item);
 			Main.getEntityStacks().put(item.getUniqueId(), droppedItemStack);
-			int stackSize = item.getItemStack().getAmount();
+			int stackSize = item.getItemStack().getAmount() - 1;
 			if(item.getItemStack().getAmount() > 1) {
 				droppedItemStack.setSize(stackSize);
 				droppedItemStack.updateName(stackSize);

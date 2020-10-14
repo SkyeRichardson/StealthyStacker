@@ -16,7 +16,7 @@ public class PlayerPickupItemListener implements Listener {
 		ItemStack itemStack = item.getItemStack();
 		if (Main.getEntityStacks().containsKey(item.getUniqueId())) {
 			int stackSize = Main.getEntityStacks().get(item.getUniqueId()).getSize();
-			itemStack.setAmount(stackSize - 1);
+			itemStack.setAmount(stackSize);
 			Player player = event.getPlayer();
 			Inventory inv = player.getInventory();
 			inv.addItem(itemStack);
