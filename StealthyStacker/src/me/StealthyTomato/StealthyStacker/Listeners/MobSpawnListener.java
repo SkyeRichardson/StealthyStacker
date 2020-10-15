@@ -15,6 +15,10 @@ import me.StealthyTomato.StealthyStacker.Utils.ObjectStackUtils;
 public class MobSpawnListener implements Listener {
 	@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event) {
+		if(event.getSpawnReason() == SpawnReason.SPAWNER) {
+			return;
+		}
+		
 		if(event.getEntity() instanceof Creature) {
 			Creature mob = (Creature) event.getEntity();
 			SpawnReason spawnReason = event.getSpawnReason();

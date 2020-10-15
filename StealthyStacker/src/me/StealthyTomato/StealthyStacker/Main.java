@@ -28,8 +28,8 @@ public class Main extends JavaPlugin {
 	
 	private static Main plugin;
 	public FileConfiguration config = getConfig();
-	public static HashMap<UUID, EntityStack> entityStacks = new HashMap<>(); 
-	public static HashMap<Location, BlockStack> blockStacks = new HashMap<>(); 
+	public static HashMap<UUID, EntityStack> entityStacks = new HashMap<>();
+	public static HashMap<Location, BlockStack> blockStacks = new HashMap<>();
 
 	@Override
 	public void onEnable() {

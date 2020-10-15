@@ -10,6 +10,6 @@ public class CreatureStack extends EntityStack {
 	
 	@Override
 	public void updateName(int size) {
-		this.getPrincipalEntity().setCustomName(String.valueOf(size) + " " + this.getPrincipalEntity().getType().toString());
+		this.getPrincipalEntity().setCustomName(String.valueOf(size + 1) + " " + this.getPrincipalEntity().getType().toString());
 	}
 }
