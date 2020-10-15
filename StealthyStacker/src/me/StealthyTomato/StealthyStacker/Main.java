@@ -86,4 +86,8 @@ public class Main extends JavaPlugin {
 		return entityStacks;
 	}
 	
+	public static HashMap<Location, BlockStack> getBlockStacks() {
+		return blockStacks;
+	}
+	
 }

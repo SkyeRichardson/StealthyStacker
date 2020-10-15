@@ -1,5 +1,6 @@
 package me.StealthyTomato.StealthyStacker.Listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Creature;
 import org.bukkit.event.EventHandler;
@@ -16,8 +17,11 @@ public class SpawnerSpawnListener implements Listener {
 
 	@EventHandler
 	public void onSpawnerSpawnEvent(SpawnerSpawnEvent event) {
+
+		//Bukkit.getLogger().info("Spawner Spawn!");
+		
 		Location loc = event.getSpawner().getLocation();
-		int stackSize = Main.getEntityStacks().get(loc).getSize();
+		int stackSize = Main.getBlockStacks().get(loc).getSize();
 		
 		
 		if(event.getEntity() instanceof Creature) {

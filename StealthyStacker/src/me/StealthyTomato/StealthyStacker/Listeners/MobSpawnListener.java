@@ -1,5 +1,6 @@
 package me.StealthyTomato.StealthyStacker.Listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,8 @@ public class MobSpawnListener implements Listener {
 	@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event) {
 		if(event.getSpawnReason() == SpawnReason.SPAWNER) {
+
+			//Bukkit.getLogger().info("skipping CreatureSpawnEvent cus spawner spawn event :p");
 			return;
 		}
 		
