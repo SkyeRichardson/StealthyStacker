@@ -20,6 +20,7 @@ import me.StealthyTomato.StealthyStacker.Listeners.InventoryPickupListener;
 import me.StealthyTomato.StealthyStacker.Listeners.ItemSpawnListener;
 import me.StealthyTomato.StealthyStacker.Listeners.MobSpawnListener;
 import me.StealthyTomato.StealthyStacker.Listeners.PlayerPickupItemListener;
+import me.StealthyTomato.StealthyStacker.Listeners.SpawnerSpawnListener;
 import me.StealthyTomato.StealthyStacker.StackClasses.BlockStack;
 import me.StealthyTomato.StealthyStacker.StackClasses.EntityStack;
 
@@ -27,8 +28,8 @@ public class Main extends JavaPlugin {
 	
 	private static Main plugin;
 	public FileConfiguration config = getConfig();
-	public static HashMap<UUID, EntityStack> entityStacks = new HashMap<>(); 
-	public static HashMap<Location, BlockStack> blockStacks = new HashMap<>(); 
+	public static HashMap<UUID, EntityStack> entityStacks = new HashMap<>();
+	public static HashMap<Location, BlockStack> blockStacks = new HashMap<>();
 
 	@Override
 	public void onEnable() {
@@ -43,6 +44,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
 		getServer().getPluginManager().registerEvents(new InventoryPickupListener(), this);
+		getServer().getPluginManager().registerEvents(new SpawnerSpawnListener(), this);
 		getLogger().info("StealthyStacker Enabled");
 	}
 	
@@ -82,6 +84,10 @@ public class Main extends JavaPlugin {
 	
 	public static HashMap<UUID, EntityStack> getEntityStacks() {
 		return entityStacks;
+	}
+	
+	public static HashMap<Location, BlockStack> getBlockStacks() {
+		return blockStacks;
 	}
 	
 }

@@ -23,6 +23,11 @@ public abstract class ObjectStack {
 		updateName(size);
 	}
 	
+	public void incrementObjectStack(int toAdd) {
+		size += toAdd;
+		updateName(size);
+	}
+	
 	public void decrementObjectStack() {
 		size--;
 		if(size > 0)
